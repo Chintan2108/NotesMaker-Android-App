@@ -40,10 +40,12 @@ public class DBHandler extends SQLiteOpenHelper {
                 "TITLE = ?",
                 new String[] {title},
                 null, null, null);
-
-        cursor.moveToFirst();
-
-        return cursor.getString(0);
+        String decide = "";
+        if(cursor.moveToFirst()){
+            decide = cursor.getString(0);
+        }
+        cursor.close();
+        return decide;
     }
 
     public ArrayList<Notes> getDB(SQLiteDatabase db) {
@@ -59,6 +61,7 @@ public class DBHandler extends SQLiteOpenHelper {
         while(cursor.moveToNext()) {
             notesList.add(new Notes(cursor.getString(0), cursor.getString(1)));
         }
+        cursor.close();
         return notesList;
     }
 
@@ -77,10 +80,11 @@ public class DBHandler extends SQLiteOpenHelper {
         }
     }
 
-    public void updateRec(SQLiteDatabase db, String title, String newDesc) {
+    public void updateRec(SQLiteDatabase db, String title, String newTitle, String newDesc) {
         ContentValues row = new ContentValues();
         String flag = getRec(db, title);
         Log.v(TAG, "duplidate " + flag);
+        row.put("TITLE", newTitle);
         row.put("DES", newDesc);
         db.update("notes",
                 row,

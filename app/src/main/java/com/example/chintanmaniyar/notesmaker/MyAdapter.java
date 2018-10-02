@@ -51,13 +51,13 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>{
         {
             viewHolder.description.setText(desc);
         }
-        if(title.length() > 14){
-            Log.v(TAG, title.substring(0,13) + "...");
-            viewHolder.title.setText(title.substring(0,14) + "...");
+        if(title.length() > 20){
+            Log.v(TAG, title.substring(0,19) + "...");
+            viewHolder.title.setText(Integer.toString(i+1) + ". " + title.substring(0,19) + "...");
         }
         else
         {
-            viewHolder.title.setText(desc);
+            viewHolder.title.setText(Integer.toString(i+1) + ". " + title);
         }
 
 

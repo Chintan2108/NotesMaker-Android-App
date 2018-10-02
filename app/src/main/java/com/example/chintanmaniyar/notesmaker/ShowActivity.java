@@ -75,14 +75,22 @@ public class ShowActivity extends AppCompatActivity {
             {
                 Intent oldIntent = getIntent();
                 String oldTitle = oldIntent.getStringExtra("title");
-                if(!oldTitle.equals(newTitle)){
+                if(!oldTitle.equalsIgnoreCase(newTitle)){
                     if(!dbhandler.getRec(db, newTitle).isEmpty()) {
                         t = Toast.makeText(this, "Note with same title already exists", Toast.LENGTH_SHORT);
                         t.show();
                     }
+                    else {
+                        dbhandler.updateRec(db, oldTitle, newTitle, newDesc);
+                        t = Toast.makeText(this, "Note updated succesfully", Toast.LENGTH_SHORT);
+                        Intent intent = new Intent(this, MainActivity.class);
+                        t.show();
+                        startActivity(intent);
+                        finish();
+                    }
                 }
                 else{
-                    dbhandler.updateRec(db, newTitle, newDesc);
+                    dbhandler.updateRec(db, oldTitle, newTitle, newDesc);
                     t = Toast.makeText(this, "Note updated succesfully", Toast.LENGTH_SHORT);
                     Intent intent = new Intent(this, MainActivity.class);
                     t.show();
