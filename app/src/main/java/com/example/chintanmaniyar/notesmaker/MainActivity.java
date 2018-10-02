@@ -54,6 +54,6 @@ import java.util.List;
          flag = true;
          Intent intent = new Intent(this, ShowActivity.class);
          startActivity(intent);
-         //finish();
+         finish();
      }
  }
