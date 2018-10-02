@@ -46,8 +46,6 @@ import java.util.List;
          MyAdapter adapter = new MyAdapter(this, notesList);
          recyclerView.setAdapter(adapter);
          recyclerView.setLayoutManager(new LinearLayoutManager(this));
-         Log.d(TAG, "where?");
-
      }
 
      public void onAddNote(View view) {
