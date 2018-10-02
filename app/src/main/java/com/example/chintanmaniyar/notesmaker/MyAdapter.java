@@ -51,7 +51,14 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>{
         {
             viewHolder.description.setText(desc);
         }
-        viewHolder.title.setText(Integer.toString(i+1) + ". " +title);
+        if(title.length() > 14){
+            Log.v(TAG, desc.substring(0,14) + "...");
+            viewHolder.title.setText(desc.substring(0,14) + "...");
+        }
+        else
+        {
+            viewHolder.title.setText(desc);
+        }
 
 
         viewHolder.parentLayout.setOnClickListener(new View.OnClickListener() {
