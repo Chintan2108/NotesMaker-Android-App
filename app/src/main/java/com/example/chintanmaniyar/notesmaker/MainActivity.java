@@ -53,5 +53,6 @@ import java.util.List;
          Intent intent = new Intent(this, ShowActivity.class);
          startActivity(intent);
          finish();
+         //make child
      }
  }
